@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/13 13:59:18 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/13 15:04:24 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS				= philosophers.c \
 SRC					= $(addprefix ${FOLDER},${SRCS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 
-OBJS				= ${SRC:.c=.o}
+OBJ					= ${SRC:.c=.o}
 
 #  ██████╗     ██████╗     ███╗   ███╗    ██████╗     ██╗    ██╗
 # ██╔════╝    ██╔═══██╗    ████╗ ████║    ██╔══██╗    ██║    ██║
@@ -39,21 +39,12 @@ OBJS				= ${SRC:.c=.o}
 #  ╚═════╝     ╚═════╝     ╚═╝     ╚═╝    ╚═╝         ╚═╝    ╚══════╝
 
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror #-g -fsanitize=address 
+CFLAGS  			= -Wall -Wextra -Werror -pthread #-g -fsanitize=address 
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
-OBJ					= ${OBJS}
-
 UNAME_S				= $(shell uname -s)
 
-ifeq ($(UNAME_S),Linux)
-	LIBS 			= -L ./libft -lft
-endif
-ifeq ($(UNAME_S),Darwin)
-	LIBS 			= -L ./libft -lft
-endif
-
-COMPIL	= $(CC) $(CFLAGS) ${OBJ} -lncurses $(LIBS) -o $(NAME) 
+COMPIL	= $(CC) $(CFLAGS) ${OBJ} -o $(NAME)
 
 # ██████╗     ██╗   ██╗    ██╗         ███████╗    ███████╗
 # ██╔══██╗    ██║   ██║    ██║         ██╔════╝    ██╔════╝
@@ -66,10 +57,9 @@ $(NAME):	${OBJ}
 			@printf $(blue)
 			@printf "\n"
 			@printf $(magenta)
-			$(MAKE_EXT) ./libft
 			@$(COMPIL)
 			@printf $(green)
-			@printf "🍽 HAPPY PHILOSOPHER GAMES 🍽 \n"
+			@printf "🍽  HAPPY PHILOSOPHER GAMES 🍽 \n"
 			@printf $(reset)
 
 all:		${NAME}
@@ -83,14 +73,13 @@ all:		${NAME}
 re: 		fclean all
 
 clean:
-			$(MAKE_EXT) ./libft clean
+			clean
 			@${RM} ${OBJ}
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
 			@printf $(reset)
 
 fclean:		clean
-			$(MAKE_EXT) ./libft fclean
 			@${RM} $(NAME)
 			@printf $(magenta)
 			@printf "Your folder is now clean 🧹\n"
