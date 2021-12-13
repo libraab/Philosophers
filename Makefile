@@ -6,11 +6,11 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/13 15:04:24 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/13 20:13:52 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			philosophers
+NAME =			philo
 
 # ███████╗    ██╗    ██╗         ███████╗    ███████╗
 # ██╔════╝    ██║    ██║         ██╔════╝    ██╔════╝
@@ -24,7 +24,10 @@ FOLDER				= srcs/
 
 HEADER_FILE 		= philosophers.h
 
-SRCS				= philosophers.c \
+SRCS				= 	philosophers.c \
+						ft_utils.c \
+						ft_error.c \
+						ft_print.c \
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
@@ -39,7 +42,7 @@ OBJ					= ${SRC:.c=.o}
 #  ╚═════╝     ╚═════╝     ╚═╝     ╚═╝    ╚═╝         ╚═╝    ╚══════╝
 
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror -pthread #-g -fsanitize=address 
+CFLAGS  			= -Wall -Wextra -Werror #-pthread #-g -fsanitize=address 
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 UNAME_S				= $(shell uname -s)
