@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 14:01:25 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/03/23 18:03:03 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/11/29 14:06:40 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
+#include "libft.h"
 
-# define PHILOSOPHERS_H
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	void	*origin;
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <math.h>
-
-//=============================================================================//
-//*********************** F U N C T I O N S ***********************************//	
-//=============================================================================//
-
-#endif
+	if (!dst && !src)
+		return (NULL);
+	origin = dst;
+	while (n > 0)
+	{
+		*((char *)dst) = *((char *)src);
+		dst++;
+		src++;
+		n--;
+	}
+	return (origin);
+}

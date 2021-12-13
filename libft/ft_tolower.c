@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouhlel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 13:53:49 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/03/24 09:35:09 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/03/30 16:21:15 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "libft.h"
 
-int main (int ac, char **av)
+int	ft_tolower(int c)
 {
-	
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
 }

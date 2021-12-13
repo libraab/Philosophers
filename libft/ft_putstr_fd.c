@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 14:01:25 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/03/23 18:12:51 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/11/16 09:00:01 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
+#include "libft.h"
 
-# define PHILOSOPHERS_H
-
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <math.h>
-
-//=============================================================================//
-//*********************** F U N C T I O N S ***********************************//	
-//=============================================================================//
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (fd)
+	{
+		if (fd < 0 || !s)
+			return ;
+		while (*s)
+		{
+			ft_putchar_fd(*s, fd);
+			s++;
+		}
+	}
+}

@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouhlel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 13:53:49 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/03/24 09:39:06 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/03/30 16:21:37 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "libft.h"
 
-int main (int ac, char **av)
+int	ft_toupper(int c)
 {
-	
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
 }

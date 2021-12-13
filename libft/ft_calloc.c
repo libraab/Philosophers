@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abouhlel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 13:53:49 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/04/06 12:52:49 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/04/06 12:58:22 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "libft.h"
 
-int main (int ac, char **av)
+void	*ft_calloc(size_t count, size_t size)
 {
-	
+	char	*s;
+
+	s = malloc(count * size);
+	if (!s)
+		return (0);
+	ft_memset(s, 0, size * count);
+	return (s);
 }
