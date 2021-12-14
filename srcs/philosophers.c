@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 17:11:52 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 18:23:44 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_stock_data(t_data *data, char **av)
 		data->phil[i].eat_time = ft_atoi(av[3]);
 		data->phil[i].sleep_time = ft_atoi(av[4]);
 		data->phil[i].think_time = 0;
+		data->phil[i].id = i + 1;
 		i++;
 	}
 }

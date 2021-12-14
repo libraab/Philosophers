@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 17:49:30 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 18:27:13 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philo
 	int	death_time;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
+	int id;
 }				t_philo;
 
 typedef struct s_data
@@ -60,8 +61,8 @@ void				ft_init(t_data *data);
 void				ft_free(t_data *data);
 void				ft_create_thread(t_data *data);
 void				*ft_action(void *ptr);
-int					ft_eat(int i);
-int					ft_sleep(int i);
-int					ft_think(int i);
+void	ft_create_mutex(t_data *data);
+void	ft_destroy_mutex(t_data *data);
+void	ft_threading(t_data *data);
 
 #endif
