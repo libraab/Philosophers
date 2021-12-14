@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 09:55:46 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 11:25:03 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check_limits(char **av)
 		printf("Error: Too many philosophers\n");
 		exit(EXIT_FAILURE);
 	}
-	if (ft_atoi(av[2]) > 60 || ft_atoi(av[3]) > 60 || ft_atoi(av[4]) > 60)
+	if (ft_atoi(av[2]) < 60 || ft_atoi(av[3]) < 60 || ft_atoi(av[4]) < 60)
 	{
 		printf("Error: time exceeded limits\n");
 		exit(EXIT_FAILURE);
@@ -34,10 +34,9 @@ int	ft_check_limits(char **av)
 
 int	ft_check_neg(char **av)
 {
-	if (ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0 || ft_atoi(av[3]) <= 0
-		|| ft_atoi(av[4]) <= 0 || ft_atoi(av[5]) < 0)
+	if (ft_atoi(av[1]) <= 0 || ft_atoi(av[5]) < 0)
 	{
-		printf("Error: negatif number\n");
+		printf("Error: invalid value\n");
 		exit(EXIT_FAILURE);
 	}
 	if (ft_atoi(av[5]) == 0)
