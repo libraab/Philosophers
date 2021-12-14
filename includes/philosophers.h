@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 17:34:37 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:49:30 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_philo
 	int	think_time;
 	int	sleep_time;
 	int	death_time;
-	int	*right_fork;
-	int	*left_fork;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*left_fork;
 }				t_philo;
 
 typedef struct s_data

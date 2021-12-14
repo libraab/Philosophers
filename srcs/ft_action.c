@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 17:35:45 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:43:23 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	ft_eat(int i)
 {
-	printf("philo %d is eating\n", i + 1);
+	if (//forks unavailable)
+		return (0);
+	if (//forks available) //while (time to eat)
+		printf("philo %d is eating\n", i + 1);
 	return (1);
 }
 
