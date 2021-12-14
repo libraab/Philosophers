@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_action.c                                        :+:      :+:    :+:   */
+/*   ft_thread.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 17:35:45 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/12/14 17:11:21 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/12/14 17:11:58 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	ft_eat(int i)
+void	ft_create_thread(t_data *data)
 {
-	printf("philo %d is eating\n", i + 1);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (i < data->philo_nb)
+	{
+		pthread_create(&data->t_tab[i], NULL, &ft_action, &i);
+		usleep(10);
+		i++;
+	}
 }
 
-int	ft_sleep(int i)
+void	ft_threading(t_data *data)
 {
-	printf("philo %d is sleeping\n", i + 1);
-	return (1);
-}
+	int	i;
 
-int	ft_think(int i)
-{
-	printf("philo %d is thinking\n", i + 1);
-	return (1);
-}
-
-void	*ft_action(void *ptr)
-{
-	int	*id;
-
-	id = (int *)ptr;
-	//pthread_mutex_unlock(&data->mutex[i]);
-	//pthread_mutex_lock(&data->mutex[i]);
-	ft_eat(*id);
-	ft_sleep(*id);
-	ft_think(*id);
-	return (0);
+	i = 0;
+	while (i < data->philo_nb)
+	{
+		pthread_join(data->t_tab[i], NULL);
+		i++;
+	}
 }

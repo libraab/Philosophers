@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 17:05:00 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:11:52 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,47 +27,10 @@ void	ft_stock_data(t_data *data, char **av)
 	}
 }
 
-void	ft_create_thread(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->philo_nb)
-	{
-		pthread_create(&data->t_tab[i], NULL, &ft_action, &i);
-		usleep(10);
-		i++;
-	}
-}
-
-void	ft_create_mutex(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->philo_nb)
-	{
-		pthread_mutex_init(&data->m_tab[i], NULL);
-		i++;
-	}
-}
-
-void	ft_destroy_mutex(t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (i < data->philo_nb)
-	{
-		pthread_mutex_destroy(&data->m_tab[i]);
-		i++;
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_data	data;
-	
+
 	if (ac < 5 || ac > 6)
 		return (0);
 	if (ac >= 5)
@@ -84,14 +47,7 @@ int	main(int ac, char **av)
 		ft_stock_data(&data, av);
 		ft_create_mutex(&data);
 		ft_create_thread(&data);
-
-		i = 0;
-		while (i < data->philo_nb)
-		{
-			pthread_join(data->t_tab[i], NULL);
-			i++;
-		}
-		
+		ft_threading(&data);
 		//ft_print(data);
 		ft_destroy_mutex(&data);
 		ft_free(&data);
