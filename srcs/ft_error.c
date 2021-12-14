@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 20:03:22 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 09:55:46 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,18 @@ int	ft_check_limits(char **av)
 		printf("Error: Too much eating\n");
 		exit(EXIT_FAILURE);
 	}
-	return(1);
+	return (1);
 }
 
 int	ft_check_neg(char **av)
 {
-	if (ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0 || ft_atoi(av[3]) <= 0 || ft_atoi(av[4]) <= 0 || ft_atoi(av[5]) < 0)
-	{ 
+	if (ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0 || ft_atoi(av[3]) <= 0
+		|| ft_atoi(av[4]) <= 0 || ft_atoi(av[5]) < 0)
+	{
 		printf("Error: negatif number\n");
 		exit(EXIT_FAILURE);
 	}
 	if (ft_atoi(av[5]) == 0)
-		return(0);
-	return(1);
+		return (0);
+	return (1);
 }

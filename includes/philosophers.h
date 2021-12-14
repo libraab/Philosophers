@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 20:13:44 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:10:47 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int					ft_check_limits(char **av);
 int					ft_check_neg(char **av);
 void				*ft_calloc(size_t count, size_t size);
 void				*ft_memset(void	*b, int c, size_t len);
-void				ft_stok_data(t_philo *phil, char **av, int ac);
+void				ft_stock_data(t_data *data, char **av);
 void				ft_print(t_data data);
+void				*ft_action();
 
 #endif

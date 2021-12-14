@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/13 19:43:17 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/14 09:57:26 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	*ft_calloc(size_t count, size_t size)
 	return (a);
 }
 
-
 long long int	ft_atoi(char *str)
 {
 	unsigned long int	result;
@@ -54,7 +53,8 @@ long long int	ft_atoi(char *str)
 	result = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\f' || str[i] == '\v' || str[i] == '\t' || str[i] == '\r')
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\f'
+		|| str[i] == '\v' || str[i] == '\t' || str[i] == '\r')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

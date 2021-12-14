@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/13 20:13:52 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/14 09:34:21 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ HEADER_FILE 		= philosophers.h
 SRCS				= 	philosophers.c \
 						ft_utils.c \
 						ft_error.c \
-						ft_print.c \
+						ft_print.c
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
@@ -76,7 +76,6 @@ all:		${NAME}
 re: 		fclean all
 
 clean:
-			clean
 			@${RM} ${OBJ}
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
