@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/14 11:13:15 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/14 16:28:22 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS				= 	philosophers.c \
 						ft_utils.c \
 						ft_error.c \
 						ft_print.c \
-						ft_memory.c
+						ft_memory.c \
+						ft_action.c \
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
