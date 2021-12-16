@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 17:11:21 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/15 18:08:55 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:28:19 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_create_thread(t_data *data)
 		i++;
 	}
 	i = 0;
-	while (i < data->philo_nb)
+	while (i < data->philo_nb && data->all_alive == 1)
 	{
 		pthread_join(data->t_tab[i], NULL);
 		i++;
