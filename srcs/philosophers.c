@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/16 11:42:43 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/16 16:52:05 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	ft_stock_data(t_data *data, char **av)
 {
 	int	i;
+	int alive;
 
 	i = 0;
+	alive = 1;
 	while (i < data->philo_nb)
 	{
 		data->phil[i].death_time = ft_atoi(av[2]);
@@ -24,10 +26,19 @@ void	ft_stock_data(t_data *data, char **av)
 		data->phil[i].sleep_time = ft_atoi(av[4]);
 		data->phil[i].think_time = 0;
 		data->phil[i].id = i + 1;
-		data->all_alive = 1;
-		data->phil[i]->philo_alive = &data->all_alive;
+		data->phil[i].alive = &alive;
 		i++;
 	}
+}
+
+int ft_check_death(t_philo *philo)
+{
+	if (get_time() - philo->start_time >= philo->starving + philo->death_time)
+	{
+		philo->funeral = get_time() - philo->start_time;
+		return (0);
+	}
+	return (1);
 }
 
 int	main(int ac, char **av)
