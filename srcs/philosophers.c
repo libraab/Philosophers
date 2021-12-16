@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 18:23:44 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/15 18:09:08 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	main(int ac, char **av)
 		ft_stock_data(&data, av);
 		ft_create_mutex(&data);
 		ft_create_thread(&data);
-		ft_threading(&data);
-		//ft_print(data);
 		ft_destroy_mutex(&data);
 		ft_free(&data);
 	}
