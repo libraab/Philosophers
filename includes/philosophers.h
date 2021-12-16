@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/15 18:12:49 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/16 10:46:23 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_data
 
 long long int		ft_atoi(char *str);
 int					ft_isdigit(int c);
-int					ft_check_limits(char **av);
-int					ft_check_neg(char **av);
+int					ft_check_limits(char **av, int ac);
+int					ft_check_neg(char **av, int ac);
 void				*ft_calloc(size_t count, size_t size);
 void				*ft_memset(void	*b, int c, size_t len);
 void				ft_stock_data(t_data *data, char **av);

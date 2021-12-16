@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/15 18:09:08 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/16 10:45:39 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int ac, char **av)
 			data.eat_nb = ft_atoi(av[5]);
 		else
 			data.eat_nb = 1;
-		ft_check_limits(av);
-		if (ft_check_neg(av) == 0)
+		ft_check_limits(av, ac);
+		if (ft_check_neg(av, ac) == 0)
 			return (0);
 		ft_init(&data);
 		ft_stock_data(&data, av);
