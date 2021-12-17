@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/16 17:01:53 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:09:21 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,25 @@ int	ft_eat(t_philo *philo)
 {
 	long int tmp;
 	pthread_mutex_lock(philo->right_fork);
+	printf("[%ld] philo %d took his right fork\n", get_time() - philo->start_time, philo->id);
 	pthread_mutex_lock(philo->left_fork);
+	printf("[%ld] philo %d took his left fork\n", get_time() - philo->start_time, philo->id);
 	pthread_mutex_lock(&philo->output);
-	printf("At [%ld] philo %d is eating\n", get_time() - philo->start_time, philo->id);
+	printf("[%ld] philo %d is eating\n", get_time() - philo->start_time, philo->id);
 	pthread_mutex_unlock(&philo->output);
 	philo->starving = get_time() - philo->start_time;
-	tmp = philo->eat_time * 1000;
-	while (tmp > 0)
+	tmp = get_time() - philo->start_time;
+	while (get_time() - philo->start_time < tmp + philo->eat_time) 
 	{
-		usleep(10000);
-		tmp -= 10000;
+		usleep(1);
 		if (!ft_check_death(philo))
 		{
 			philo->alive = 0;
 			break;
 		}
 	}
-	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->right_fork);
 	if (!philo->alive)
 		return (0);
 	return (1);
@@ -43,13 +44,12 @@ int	ft_sleep(t_philo *philo)
 {
 	long int tmp;
 	pthread_mutex_lock(&philo->output);
-	printf("At [%ld] philo %d is sleeping\n", get_time() - philo->start_time, philo->id);
+	printf("[%ld] philo %d is sleeping\n", get_time() - philo->start_time, philo->id);
 	pthread_mutex_unlock(&philo->output);
-	tmp = philo->sleep_time * 1000;
-	while (tmp > 0)
+	tmp = get_time() - philo->start_time;
+	while (get_time() - philo->start_time < tmp + philo->sleep_time)
 	{
-		usleep(10000);
-		tmp -= 10000;
+		usleep(1);
 		if (!ft_check_death(philo))
 		{
 			philo->alive = 0;
@@ -64,7 +64,7 @@ int	ft_sleep(t_philo *philo)
 int	ft_think(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->output);
-	printf("At [%ld] philo %d is thinking\n", get_time() - philo->start_time, philo->id);
+	printf("[%ld] philo %d is thinking\n", get_time() - philo->start_time, philo->id);
 	pthread_mutex_unlock(&philo->output);
 	return (1);
 }
@@ -75,20 +75,20 @@ void	*ft_action(void *ptr)
 	while(philo->alive)
 	{
 		if (philo->id % 2 == 0)
-			usleep(1000);
+			usleep(10);
 		if(!ft_eat(philo))
 		{
-			printf("At [%d] philo %d is dead while eating\n", philo->funeral, philo->id);
+			printf("[%d] philo %d is dead while eating\n", philo->funeral, philo->id);
 			break;
 		}
 		if (!ft_sleep(philo))
 		{
-			printf("At [%d] philo %d is dead while sleeping\n", philo->funeral, philo->id);
+			printf("[%d] philo %d is dead while sleeping\n", philo->funeral, philo->id);
 			break;
 		}
 		if (ft_think(philo) && !ft_check_death(philo))
 		{
-			printf("At [%d] philo %d is dead while thinking \n", philo->funeral, philo->id);
+			printf("[%d] philo %d is dead while thinking \n", philo->funeral, philo->id);
 			break;
 		}
 	}
