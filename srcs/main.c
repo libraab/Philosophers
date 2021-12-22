@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 15:48:45 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 17:37:10 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_init_values(t_data *data, int ac, char **av)
 		data[i].death_time = ft_atoi(av[2]);
 		data[i].philo_nbr = ft_atoi(av[1]);
 		data[i].starving = 0;
-		data[i].start = 0;
+		data[i].start = 55;
 		data[i].alive = 1;
 		data[i].id = i + 1;
 		if (ac == 6)
@@ -51,7 +51,7 @@ void	ft_create_thread(t_data *data)
 	int			i;
 	int			count;
 	pthread_t	azraeel;
-	
+
 	i = 0;
 	count = data->philo_nbr;
 	while (i < count)
@@ -60,7 +60,7 @@ void	ft_create_thread(t_data *data)
 		pthread_create(&data[i].philo, NULL, &ft_routine, &data[i]);
 		i++;
 	}
-	pthread_create(&azraeel, NULL, &ft_funeral, &data);
+	pthread_create(&azraeel, NULL, &ft_funeral, data);
 	pthread_join(azraeel, NULL);
 }
 

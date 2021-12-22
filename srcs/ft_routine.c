@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 15:50:25 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 17:36:50 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,19 @@ int	ft_eat(t_data *phil)
 {
 	long int	tmp;
 
-
 	tmp = phil->eat_time * 1000;
 	pthread_mutex_lock(&phil->right_fork);
 	pthread_mutex_lock(&phil->output);
 	printf("[%ld] id %d took right fork\n", get_time() - phil->start, phil->id);
 	pthread_mutex_unlock(&phil->output);
-	
 	pthread_mutex_lock(phil->left_fork);
 	pthread_mutex_lock(&phil->output);
 	printf("[%ld] id %d took left fork\n", get_time() - phil->start, phil->id);
 	pthread_mutex_unlock(&phil->output);
-	
 	phil->starving = get_time() - phil->start;
 	pthread_mutex_lock(&phil->output);
 	printf("[%ld] id %d is eating\n", get_time() - phil->start, phil->id);
 	pthread_mutex_unlock(&phil->output);
-	
 	usleep(tmp);
 	pthread_mutex_unlock(&phil->right_fork);
 	pthread_mutex_unlock(phil->left_fork);
@@ -77,24 +73,21 @@ void	*ft_routine(void *ptr)
 
 void	*ft_funeral(void *ptr)
 {
-	t_data	*philo;
+	t_data		*philo;
 	long int	janaza;
-	int i;
+	int			i;
 
 	philo = ptr;
 	janaza = 0;
 	i = 0;
-	while (i < philo->philo_nbr)
+	while (1)
 	{
 		if (get_time() - philo->start >= philo->starving + philo->death_time)
 		{
 			philo->alive = 0;
+			printf("[%ld] id %d died\n", get_time() - philo->start, philo->id);
 			return (0);
 		}
-		i++;
 	}
 	return (0);
 }
-
-
-

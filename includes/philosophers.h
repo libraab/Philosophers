@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 15:44:59 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 17:12:24 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_data
 	long int		sleep_time;
 	long int		death_time;
 	long int		start;
+	int				starving;
 	int				philo_nbr;
 	int				lunch;
-	int				starving;
 	int				id;
 	int				alive;
 	pthread_mutex_t	right_fork;
