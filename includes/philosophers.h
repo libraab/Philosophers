@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/17 15:13:34 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 12:24:23 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,55 +26,47 @@
 
 # define MAX 2147483647
 
-typedef struct s_philo
-{
-	int				eat_time;
-	int				think_time;
-	int				sleep_time;
-	int				death_time;
-	int				starving;
-	int				*alive;
-	int				funeral;
-	long int		start_time;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t output;
-	int				id;
-}				t_philo;
-
 typedef struct s_data
 {
-	pthread_mutex_t	*mutex;
-	pthread_t		*t_tab;
-	t_philo			*phil;
-	int				philo_nb;
-	int				eat_nb;
-	int				timestamp;
+	long int		eat_time;
+	long int		sleep_time;
+	long int		think_time;
+	long int		death_time;
+	long int		start;
+	int				philo_nbr;
+	int				lunch;
+	int				id;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	output;
+	pthread_t		philo;
 }					t_data;
 
 //*************************************************************//
 //					* F U N C T I O N S *					   //	
 //=============================================================//
+// main
+void			ft_init_values(t_data *data, int ac, char **av);
+void			ft_init_mutex(t_data *data);
+void			ft_create_thread(t_data *data);
+void			ft_destroy_mutex(t_data *data);
+long int		get_time(void);
+// utils
+void			*ft_memset(void	*b, int c, size_t len);
+void			*ft_calloc(size_t count, size_t size);
+int				ft_isdigit(int c);
+long long int	ft_atoi(char *str);
+// error 
+int				ft_check_limit(char **av, int ac);
+int				ft_check_neg(char **av, int ac);
+// routine 
+void			*ft_routine(void *ptr);
+int				ft_eat(t_data *philo);
+int				ft_sleep(t_data *philo);
+int				ft_think(t_data *philo);
 
-long long int		ft_atoi(char *str);
-long int    		get_time(void);
-int					ft_isdigit(int c);
-int					ft_check_limits(char **av, int ac);
-int					ft_check_neg(char **av, int ac);
-void				*ft_action(void *ptr);
-void				*ft_calloc(size_t count, size_t size);
-void				*ft_memset(void	*b, int c, size_t len);
-void				ft_stock_data(t_data *data, char **av);
-void				ft_print(t_data data);
-void				ft_init(t_data *data);
-void				ft_free(t_data *data);
-void				ft_create_thread(t_data *data);
-void				ft_create_mutex(t_data *data);
-void				ft_destroy_mutex(t_data *data);
-void				ft_threading(t_data *data);
-int					ft_sleep(t_philo *philo);
-int					ft_think(t_philo *philo);
-int					ft_eat(t_philo *philo);
-int					ft_check_death(t_philo *philo);
+//*************************************************************//
+//						* F R E E *							   //	
+//=============================================================//
 
 #endif

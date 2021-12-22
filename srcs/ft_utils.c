@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/14 12:05:49 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 12:23:34 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,21 @@ long long int	ft_atoi(char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+void	ft_free(t_data *data)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = data->philo_nbr;
+	while (i < count)
+	{
+		pthread_mutex_destroy(&data->right_fork);
+		pthread_mutex_destroy(&data->left_fork);
+		pthread_mutex_destroy(&data->output);
+		i++;
+	}
+	free (data);
 }
