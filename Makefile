@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/22 14:40:04 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/22 17:40:49 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ OBJ					= ${SRC:.c=.o}
 #  ╚═════╝     ╚═════╝     ╚═╝     ╚═╝    ╚═╝         ╚═╝    ╚══════╝
 
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror -pthread #-g -fsanitize=address 
+CFLAGS  			= -Wall -Wextra -Werror -pthread
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 UNAME_S				= $(shell uname -s)

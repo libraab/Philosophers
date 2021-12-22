@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 11:22:14 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 18:06:07 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,13 @@ int	ft_check_neg(char **av, int ac)
 			return (0);
 	}
 	return (1);
+}
+
+void	ft_usleep(long int start, long int eat_time)
+{
+	int	tmp;
+
+	tmp = get_time() - start;
+	while (get_time() - start < tmp + eat_time)
+		usleep(10);
 }

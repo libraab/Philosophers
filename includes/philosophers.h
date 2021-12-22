@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 17:12:24 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 18:01:48 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ long long int	ft_atoi(char *str);
 // error 
 int				ft_check_limit(char **av, int ac);
 int				ft_check_neg(char **av, int ac);
+void			ft_usleep(long int start, long int eat_time);
+
 // routine 
 void			*ft_routine(void *ptr);
-int				ft_eat(t_data *philo);
-int				ft_sleep(t_data *philo);
-int				ft_think(t_data *philo);
+void			ft_eat(t_data *philo);
+void			ft_sleep(t_data *philo);
+void			ft_think(t_data *philo);
 void			*ft_funeral(void *ptr);
 
 //*************************************************************//
