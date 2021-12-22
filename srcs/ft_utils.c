@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 12:23:34 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 14:09:26 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,10 @@ void	ft_free(t_data *data)
 
 	i = 0;
 	count = data->philo_nbr;
+	pthread_mutex_destroy(&data->output);
 	while (i < count)
 	{
-		pthread_mutex_destroy(&data->right_fork);
-		pthread_mutex_destroy(&data->left_fork);
-		pthread_mutex_destroy(&data->output);
+		pthread_mutex_destroy(&data[i].right_fork);
 		i++;
 	}
 	free (data);

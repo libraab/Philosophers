@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 12:24:23 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/22 15:44:59 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ typedef struct s_data
 {
 	long int		eat_time;
 	long int		sleep_time;
-	long int		think_time;
 	long int		death_time;
 	long int		start;
 	int				philo_nbr;
 	int				lunch;
+	int				starving;
 	int				id;
-	pthread_mutex_t	*right_fork;
+	int				alive;
+	pthread_mutex_t	right_fork;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	output;
 	pthread_t		philo;
@@ -64,9 +65,12 @@ void			*ft_routine(void *ptr);
 int				ft_eat(t_data *philo);
 int				ft_sleep(t_data *philo);
 int				ft_think(t_data *philo);
+void			*ft_funeral(void *ptr);
 
 //*************************************************************//
 //						* F R E E *							   //	
 //=============================================================//
+
+void			ft_free(t_data *data);
 
 #endif

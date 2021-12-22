@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/22 11:38:28 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/22 14:40:04 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ HEADER_FILE 		= philosophers.h
 SRCS				= 	main.c \
 						ft_utils.c \
 						ft_routine.c \
-						ft_print.c \
 						ft_error.c \
 
 SRC					= $(addprefix ${FOLDER},${SRCS})
@@ -43,7 +42,7 @@ OBJ					= ${SRC:.c=.o}
 #  ╚═════╝     ╚═════╝     ╚═╝     ╚═╝    ╚═╝         ╚═╝    ╚══════╝
 
 CC					= gcc
-CFLAGS  			= -Wall -Wextra -Werror #-pthread #-g -fsanitize=address 
+CFLAGS  			= -Wall -Wextra -Werror -pthread #-g -fsanitize=address 
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 UNAME_S				= $(shell uname -s)
