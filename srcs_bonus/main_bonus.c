@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:25:36 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 15:49:38 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/23 18:08:23 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	ft_init_values(t_data *data, int ac, char **av)
 		data[i].start = 0;
 		data[i].alive = 1;
 		data[i].id = i + 1;
-		data[i].forks = data[0].forks;
-		data[i].print = data[0].print;
+		data[i].forks = data->forks;
+		data[i].print = data->print;
 		if (ac == 6)
 			data[i].lunch = ft_atoi(av[5]);
 		else
@@ -87,7 +87,9 @@ int	main(int ac, char **av)
 	if (!ft_check_neg(av, ac) || !ft_check_limit(av, ac))
 		return (0);
 	sem_unlink("forks");
-	data->forks = sem_open("forks", O_CREAT, 0644, data->philo_nbr);
+	data->forks = sem_open("forks", O_CREAT, 0644, ft_atoi(av[1]));
+	if (data->forks == SEM_FAILED)
+		printf("%s\n" ,strerror(errno));
 	sem_unlink("print");
 	data->print = sem_open("print", O_CREAT, 0644, 1);
 	ft_init_values(data, ac, av);
@@ -97,6 +99,7 @@ int	main(int ac, char **av)
 	//pthread_join(azraeel, NULL);
 	sem_close(data->forks);
 	sem_close(data->print);
+	printf("le pere mort\n");
 	free (data);
 	return (1);
 }

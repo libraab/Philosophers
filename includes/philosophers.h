@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 15:06:42 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:39:15 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <semaphore.h>
+#include <sys/errno.h>
 
 # define MAX 2147483647
 

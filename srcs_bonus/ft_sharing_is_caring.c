@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:27:54 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 15:55:52 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/23 18:05:36 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 void	ft_sharing_is_caring(t_data data)
 {
-	int x;
 	while (data.lunch > 0)
 	{
 		if (data.id % 2 == 0)
-			usleep (1000);
+			usleep(1000);
 		sem_wait(data.forks);
-		sem_getvalue(data.forks, &x);
-		printf("[%d]\n", x);
 		sem_wait(data.forks);
 		
 		sem_wait(data.print);
