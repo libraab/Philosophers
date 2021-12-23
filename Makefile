@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/22 17:40:49 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/23 12:51:30 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ NAME =			philo
 
 FOLDER_HEADER		= includes/
 FOLDER				= srcs/
+FOLDER_B			= srcs_bonus/
 
 HEADER_FILE 		= philosophers.h
 
@@ -29,10 +30,16 @@ SRCS				= 	main.c \
 						ft_routine.c \
 						ft_error.c \
 
+BONUS_SRCS			=	main_bonus.c \
+						ft_sharing_is_caring.c \
+						ft_utils_bonus.c \
+
 SRC					= $(addprefix ${FOLDER},${SRCS})
+SRC_B				= $(addprefix ${FOLDER_B},${BONUS_SRCS})
 HEADERS				= $(addprefix ${FOLDER_HEADER},${HEADER_FILE})
 
 OBJ					= ${SRC:.c=.o}
+OBJ_B				= ${SRC_B:.c=.o}
 
 #  ██████╗     ██████╗     ███╗   ███╗    ██████╗     ██╗    ██╗
 # ██╔════╝    ██╔═══██╗    ████╗ ████║    ██╔══██╗    ██║    ██║
@@ -47,7 +54,8 @@ RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 UNAME_S				= $(shell uname -s)
 
-COMPIL	= $(CC) $(CFLAGS) ${OBJ} -o $(NAME)
+COMPIL		= $(CC) $(CFLAGS) ${OBJ} -o $(NAME)
+COMPIL_B	= $(CC) $(CFLAGS) ${OBJ_B} -o $(NAME)
 
 # ██████╗     ██╗   ██╗    ██╗         ███████╗    ███████╗
 # ██╔══██╗    ██║   ██║    ██║         ██╔════╝    ██╔════╝
@@ -73,10 +81,18 @@ all:		${NAME}
 			@$(CC) -c $(CFLAGS) -o $@ $<
 			@printf $(reset)
 
+bonus:		${OBJ_B}
+			@printf $(blue)
+			@printf "Generating bonus objects... %-33.33s\r" $@
+			@printf $(magenta)
+			@$(COMPIL_B)
+			@printf "\n🍽  HAPPY PHILOSOPHER GAMES 🍽 \n"
+			@printf $(reset)
+			
 re: 		fclean all
 
 clean:
-			@${RM} ${OBJ}
+			@${RM} ${OBJ} ${OBJ_B}
 			@printf $(magenta)
 			@printf "Object files have been deleted 🚮\n"
 			@printf $(reset)
@@ -87,7 +103,7 @@ fclean:		clean
 			@printf "Your folder is now clean 🧹\n"
 			@printf $(reset)
 
-.PHONY: 	all clean fclean re
+.PHONY: 	all clean fclean re bonus
 
 
 #  ██████╗     ██████╗     ██╗          ██████╗     ██████╗

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_routine.c                                       :+:      :+:    :+:   */
+/*   ft_sharing_is_caring.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 11:04:24 by abouhlel         ###   ########.fr       */
+/*   Created: 2021/12/23 11:27:54 by abouhlel          #+#    #+#             */
+/*   Updated: 2021/12/23 12:35:24 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	ft_eat(t_data *phil)
+void	ft_eat_sleep(t_data *phil)
 {
-	pthread_mutex_lock(&phil->right_fork);
 	pthread_mutex_lock(&phil->output);
 	printf("[%ld] id %d took right fork\n", get_time() - phil->start, phil->id);
 	pthread_mutex_unlock(&phil->output);
-	pthread_mutex_lock(phil->left_fork);
 	pthread_mutex_lock(&phil->output);
 	printf("[%ld] id %d took left fork\n", get_time() - phil->start, phil->id);
 	pthread_mutex_unlock(&phil->output);
@@ -27,19 +25,13 @@ void	ft_eat(t_data *phil)
 	printf("[%ld] id %d is eating\n", get_time() - phil->start, phil->id);
 	pthread_mutex_unlock(&phil->output);
 	ft_usleep(phil->start, phil->eat_time);
-	pthread_mutex_unlock(&phil->right_fork);
-	pthread_mutex_unlock(phil->left_fork);
+	pthread_mutex_lock(&phil->output);
+	printf("[%ld] id %d is sleeping\n", get_time() - phil->start, phil->id);
+	pthread_mutex_unlock(&phil->output);
+	ft_usleep(phil->start, phil->sleep_time);
 }
 
-void	ft_sleep(t_data *philo)
-{
-	pthread_mutex_lock(&philo->output);
-	printf("[%ld] id %d is sleeping\n", get_time() - philo->start, philo->id);
-	pthread_mutex_unlock(&philo->output);
-	ft_usleep(philo->start, philo->sleep_time);
-}
-
-void	*ft_routine(void *ptr)
+void	*ft_sharing_is_caring(void *ptr)
 {
 	t_data	*philo;
 
@@ -48,8 +40,7 @@ void	*ft_routine(void *ptr)
 	{
 		if (philo->id % 2 == 0)
 			usleep (1000);
-		ft_eat(philo);
-		ft_sleep(philo);
+		ft_eat_sleep(philo);
 		pthread_mutex_lock(&philo->output);
 		printf("[%ld] id %d is thinking\n", get_time()
 			- philo->start, philo->id);
