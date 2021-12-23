@@ -6,58 +6,58 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:27:54 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 12:35:24 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/23 15:55:52 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	ft_eat_sleep(t_data *phil)
+void	ft_sharing_is_caring(t_data data)
 {
-	pthread_mutex_lock(&phil->output);
-	printf("[%ld] id %d took right fork\n", get_time() - phil->start, phil->id);
-	pthread_mutex_unlock(&phil->output);
-	pthread_mutex_lock(&phil->output);
-	printf("[%ld] id %d took left fork\n", get_time() - phil->start, phil->id);
-	pthread_mutex_unlock(&phil->output);
-	phil->starving = get_time() - phil->start;
-	pthread_mutex_lock(&phil->output);
-	printf("[%ld] id %d is eating\n", get_time() - phil->start, phil->id);
-	pthread_mutex_unlock(&phil->output);
-	ft_usleep(phil->start, phil->eat_time);
-	pthread_mutex_lock(&phil->output);
-	printf("[%ld] id %d is sleeping\n", get_time() - phil->start, phil->id);
-	pthread_mutex_unlock(&phil->output);
-	ft_usleep(phil->start, phil->sleep_time);
-}
-
-void	*ft_sharing_is_caring(void *ptr)
-{
-	t_data	*philo;
-
-	philo = ptr;
-	while (1 && philo->lunch > 0)
+	int x;
+	while (data.lunch > 0)
 	{
-		if (philo->id % 2 == 0)
+		if (data.id % 2 == 0)
 			usleep (1000);
-		ft_eat_sleep(philo);
-		pthread_mutex_lock(&philo->output);
-		printf("[%ld] id %d is thinking\n", get_time()
-			- philo->start, philo->id);
-		pthread_mutex_unlock(&philo->output);
-		philo->lunch--;
+		sem_wait(data.forks);
+		sem_getvalue(data.forks, &x);
+		printf("[%d]\n", x);
+		sem_wait(data.forks);
+		
+		sem_wait(data.print);
+		printf("[%ld] id %d took 2 forks\n", get_time() - data.start, data.id);
+		sem_post(data.print);
+		
+		sem_wait(data.print);
+		data.starving = get_time() - data.start;
+		printf("[%ld] id %d is eating\n", get_time() - data.start, data.id);
+		sem_post(data.print);
+		
+		ft_usleep(data.start, data.eat_time);
+		
+		sem_post(data.forks);
+		sem_post(data.forks);
+		
+		sem_wait(data.print);
+		printf("[%ld] id %d is sleeping\n", get_time() - data.start, data.id);
+		sem_post(data.print);
+		
+		ft_usleep(data.start, data.sleep_time);
+		
+		sem_wait(data.print);
+		printf("[%ld] id %d is thinking\n", get_time() - data.start, data.id);
+		sem_post(data.print);
+		data.lunch--;
 	}
-	return (0);
+	exit(0);
 }
 
 void	*ft_funeral(void *ptr)
 {
 	t_data		*philo;
-	long int	janaza;
 	int			i;
 
 	philo = ptr;
-	janaza = 0;
 	i = 0;
 	while (1 && philo->lunch > 0)
 	{

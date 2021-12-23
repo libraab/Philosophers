@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 12:35:36 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/23 15:06:42 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ typedef struct s_data
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	output;
 	pthread_t		philo;
-	sem_t			*semaphore;
+	sem_t			*forks;
+	sem_t			*print;
 }					t_data;
 
 //*************************************************************//
@@ -80,8 +81,7 @@ void			ft_free(t_data *data);
 //						* B O N U S *							   //	
 //*************************************************************//
 
-void			*ft_sharing_is_caring(void *ptr);
-void			ft_eat_sleep(t_data *phil);
+void			ft_sharing_is_caring(t_data data);
 void			ft_fork(t_data *data);
 
 #endif

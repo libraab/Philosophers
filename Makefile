@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/23 12:51:30 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/23 15:58:13 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ all:		${NAME}
 
 bonus:		${OBJ_B}
 			@printf $(blue)
-			@printf "Generating bonus objects... %-33.33s\r" $@
+			@printf " Generating objects for %-33.33s           \r" $@
 			@printf $(magenta)
 			@$(COMPIL_B)
 			@printf "\n🍽  HAPPY PHILOSOPHER GAMES 🍽 \n"

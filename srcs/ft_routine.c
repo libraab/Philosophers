@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 11:04:24 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/23 13:40:51 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,9 @@ void	*ft_routine(void *ptr)
 void	*ft_funeral(void *ptr)
 {
 	t_data		*philo;
-	long int	janaza;
 	int			i;
 
 	philo = ptr;
-	janaza = 0;
 	i = 0;
 	while (1 && philo->lunch > 0)
 	{
