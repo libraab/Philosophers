@@ -6,7 +6,7 @@
 #    By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/13 13:39:02 by abouhlel          #+#    #+#              #
-#    Updated: 2021/12/23 17:34:55 by abouhlel         ###   ########.fr        #
+#    Updated: 2021/12/24 10:23:15 by abouhlel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJ_B				= ${SRC_B:.c=.o}
 #  ╚═════╝     ╚═════╝     ╚═╝     ╚═╝    ╚═╝         ╚═╝    ╚══════╝
 
 CC					= gcc
-CFLAGS  			= -g #-Wall -Wextra -Werror -pthread
+CFLAGS  			= -g -Wall -Wextra -Werror -pthread
 RM					= rm -rf
 MAKE_EXT			= @make -s --no-print-directory -C
 UNAME_S				= $(shell uname -s)

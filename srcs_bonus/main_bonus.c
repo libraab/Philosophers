@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:25:36 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 18:08:23 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 10:25:53 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,15 @@ void	ft_fork(t_data *data)
 		}
 		i++;
 	}
+	pthread_t	azraeel;
+	pthread_create(&azraeel, NULL, &ft_funeral, &data);
+	pthread_join(azraeel, NULL);
 }
 
 int	main(int ac, char **av)
 {
 	t_data	*data;
 	
-	//pthread_t	azraeel;
 
 	if (ac < 5 || ac > 6)
 		return (0);
@@ -95,8 +97,6 @@ int	main(int ac, char **av)
 	ft_init_values(data, ac, av);
 	ft_fork(data);
 	wait(0);
-	//pthread_create(&azraeel, NULL, &ft_funeral, data);
-	//pthread_join(azraeel, NULL);
 	sem_close(data->forks);
 	sem_close(data->print);
 	printf("le pere mort\n");

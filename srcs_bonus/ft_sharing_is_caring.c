@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:27:54 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 18:05:36 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 10:28:59 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*ft_funeral(void *ptr)
 		{
 			philo->alive = 0;
 			printf("[%ld] id %d died\n", get_time() - philo->start, philo->id);
-			return (0);
+			exit(EXIT_FAILURE);
 		}
 	}
 	return (0);
