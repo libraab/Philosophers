@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:27:54 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/24 10:28:59 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 14:42:21 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	ft_sharing_is_caring(t_data data)
 {
+	pthread_t	azraeel;
+
+	pthread_create(&azraeel, NULL, &ft_funeral, &data);
 	while (data.lunch > 0)
 	{
-		if (data.id % 2 == 0)
-			usleep(1000);
 		sem_wait(data.forks);
 		sem_wait(data.forks);
 		
@@ -46,6 +47,7 @@ void	ft_sharing_is_caring(t_data data)
 		sem_post(data.print);
 		data.lunch--;
 	}
+	pthread_join(azraeel, NULL);
 	exit(0);
 }
 
@@ -61,7 +63,7 @@ void	*ft_funeral(void *ptr)
 		if (get_time() - philo->start >= philo->starving + philo->death_time)
 		{
 			philo->alive = 0;
-			printf("[%ld] id %d died\n", get_time() - philo->start, philo->id);
+			printf("[%ld] philo %d --> 💀\n", get_time() - philo->start, philo->id);
 			exit(EXIT_FAILURE);
 		}
 	}

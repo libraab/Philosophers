@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:25:36 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/24 10:25:53 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 14:35:35 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,19 @@ void	ft_fork(t_data *data)
 		x = fork();
 		if (x == 0)
 		{
+			if (data[i].id % 2 == 0)
+				usleep(1000);
 			data[i].start = get_time();
 			ft_sharing_is_caring(data[i]);
 		}
+		else
+			data->pid[i] = x;
 		i++;
 	}
-	pthread_t	azraeel;
-	pthread_create(&azraeel, NULL, &ft_funeral, &data);
-	pthread_join(azraeel, NULL);
+	wait(0);
+	i = 0;
+	while (i < data->philo_nbr)
+		kill(data->pid[i++], SIGINT);
 }
 
 int	main(int ac, char **av)
@@ -86,20 +91,17 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		return (0);
 	data = ft_calloc(sizeof(t_data), ft_atoi(av[1]));
+	data->pid = ft_calloc(sizeof(int), ft_atoi(av[1]));
 	if (!ft_check_neg(av, ac) || !ft_check_limit(av, ac))
 		return (0);
 	sem_unlink("forks");
 	data->forks = sem_open("forks", O_CREAT, 0644, ft_atoi(av[1]));
-	if (data->forks == SEM_FAILED)
-		printf("%s\n" ,strerror(errno));
 	sem_unlink("print");
 	data->print = sem_open("print", O_CREAT, 0644, 1);
 	ft_init_values(data, ac, av);
 	ft_fork(data);
-	wait(0);
 	sem_close(data->forks);
 	sem_close(data->print);
-	printf("le pere mort\n");
 	free (data);
 	return (1);
 }
