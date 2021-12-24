@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:25:36 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/24 14:35:35 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 15:05:53 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,12 @@ void	ft_init_values(t_data *data, int ac, char **av)
 	}
 }
 
-long int	get_time(void)
+int	ft_isdigit(int c)
 {
-	long int		time;
-	struct timeval	current_time;
-
-	time = 0;
-	gettimeofday(&current_time, NULL);
-	time = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
-	return (time);
-}
-
-void	ft_usleep(long int start, long int eat_time)
-{
-	int	tmp;
-
-	tmp = get_time() - start;
-	while (get_time() - start < tmp + eat_time)
-		usleep(10);
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }
 
 void	ft_fork(t_data *data)
@@ -70,7 +58,6 @@ void	ft_fork(t_data *data)
 		{
 			if (data[i].id % 2 == 0)
 				usleep(1000);
-			data[i].start = get_time();
 			ft_sharing_is_caring(data[i]);
 		}
 		else
@@ -86,7 +73,6 @@ void	ft_fork(t_data *data)
 int	main(int ac, char **av)
 {
 	t_data	*data;
-	
 
 	if (ac < 5 || ac > 6)
 		return (0);

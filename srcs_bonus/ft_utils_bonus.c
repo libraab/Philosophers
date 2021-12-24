@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 12:41:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 12:43:32 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 15:05:46 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,6 @@ int	ft_check_neg(char **av, int ac)
 			return (0);
 	}
 	return (1);
-}
-
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
 }
 
 void	*ft_memset(void	*b, int c, size_t len)

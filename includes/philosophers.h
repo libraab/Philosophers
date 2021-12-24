@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/24 14:09:51 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 15:03:28 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <semaphore.h>
-#include <sys/errno.h>
-#include <signal.h>
+# include <sys/errno.h>
+# include <signal.h>
 
 # define MAX 2147483647
 
@@ -85,6 +85,7 @@ void			ft_free(t_data *data);
 //*************************************************************//
 
 void			ft_sharing_is_caring(t_data data);
+void			ft_sleep_think(t_data *data);
 void			ft_fork(t_data *data);
 
 #endif
