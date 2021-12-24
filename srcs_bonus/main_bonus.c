@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:25:36 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/24 15:05:53 by abouhlel         ###   ########.fr       */
+/*   Updated: 2021/12/24 15:52:10 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int	main(int ac, char **av)
 	sem_close(data->forks);
 	sem_close(data->print);
 	free (data);
+	free (data->pid);
 	return (1);
 }
