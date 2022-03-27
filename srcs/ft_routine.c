@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 15:59:48 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 17:50:22 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*ft_routine(void *ptr)
 	t_data	*philo;
 
 	philo = ptr;
-	while (1 && philo->lunch > 0)
+	while (philo->lunch > 0)
 	{
 		if (philo->id % 2 == 0)
 			usleep (1000);
@@ -62,11 +62,9 @@ void	*ft_routine(void *ptr)
 void	*ft_funeral(void *ptr)
 {
 	t_data		*philo;
-	int			i;
 
 	philo = ptr;
-	i = 0;
-	while (1 && philo->lunch > 0)
+	while (philo->lunch > 0)
 	{
 		if (get_time() - philo->birth > philo->starving_mode + philo->death_time)
 		{
