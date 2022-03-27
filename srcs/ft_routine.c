@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/23 13:40:51 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:59:48 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	ft_eat(t_data *phil)
 {
 	pthread_mutex_lock(&phil->right_fork);
 	pthread_mutex_lock(&phil->output);
-	printf("[%ld] id %d took right fork\n", get_time() - phil->start, phil->id);
+	printf("[%ld] id %d took right fork\n", get_time() - phil->birth, phil->id);
 	pthread_mutex_unlock(&phil->output);
 	pthread_mutex_lock(phil->left_fork);
 	pthread_mutex_lock(&phil->output);
-	printf("[%ld] id %d took left fork\n", get_time() - phil->start, phil->id);
+	printf("[%ld] id %d took left fork\n", get_time() - phil->birth, phil->id);
 	pthread_mutex_unlock(&phil->output);
-	phil->starving = get_time() - phil->start;
+	phil->starving_mode = get_time() - phil->birth;
 	pthread_mutex_lock(&phil->output);
-	printf("[%ld] id %d is eating\n", get_time() - phil->start, phil->id);
+	printf("[%ld] id %d is eating\n", get_time() - phil->birth, phil->id);
 	pthread_mutex_unlock(&phil->output);
-	ft_usleep(phil->start, phil->eat_time);
+	ft_usleep(phil->birth, phil->eat_time);
 	pthread_mutex_unlock(&phil->right_fork);
 	pthread_mutex_unlock(phil->left_fork);
 }
@@ -34,9 +34,9 @@ void	ft_eat(t_data *phil)
 void	ft_sleep(t_data *philo)
 {
 	pthread_mutex_lock(&philo->output);
-	printf("[%ld] id %d is sleeping\n", get_time() - philo->start, philo->id);
+	printf("[%ld] id %d is sleeping\n", get_time() - philo->birth, philo->id);
 	pthread_mutex_unlock(&philo->output);
-	ft_usleep(philo->start, philo->sleep_time);
+	ft_usleep(philo->birth, philo->sleep_time);
 }
 
 void	*ft_routine(void *ptr)
@@ -52,7 +52,7 @@ void	*ft_routine(void *ptr)
 		ft_sleep(philo);
 		pthread_mutex_lock(&philo->output);
 		printf("[%ld] id %d is thinking\n", get_time()
-			- philo->start, philo->id);
+			- philo->birth, philo->id);
 		pthread_mutex_unlock(&philo->output);
 		philo->lunch--;
 	}
@@ -68,10 +68,10 @@ void	*ft_funeral(void *ptr)
 	i = 0;
 	while (1 && philo->lunch > 0)
 	{
-		if (get_time() - philo->start >= philo->starving + philo->death_time)
+		if (get_time() - philo->birth > philo->starving_mode + philo->death_time)
 		{
-			philo->alive = 0;
-			printf("[%ld] id %d died\n", get_time() - philo->start, philo->id);
+			pthread_mutex_lock(&philo->output);
+			printf("[%ld] id %d died\n", get_time() - philo->birth, philo->id);
 			return (0);
 		}
 	}

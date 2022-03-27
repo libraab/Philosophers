@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 18:06:07 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 16:19:39 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	ft_check_neg(char **av, int ac)
 	return (1);
 }
 
-void	ft_usleep(long int start, long int eat_time)
+void	ft_usleep(long int birth, long int activity_time)
 {
 	int	tmp;
 
-	tmp = get_time() - start;
-	while (get_time() - start < tmp + eat_time)
+	tmp = get_time() - birth;
+	while (get_time() - birth < tmp + activity_time)
 		usleep(10);
 }

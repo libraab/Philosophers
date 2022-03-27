@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/22 17:37:10 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:50:40 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	ft_init_values(t_data *data, int ac, char **av)
 		data[i].sleep_time = ft_atoi(av[4]);
 		data[i].death_time = ft_atoi(av[2]);
 		data[i].philo_nbr = ft_atoi(av[1]);
-		data[i].starving = 0;
-		data[i].start = 55;
-		data[i].alive = 1;
+		data[i].starving_mode = 0;
+		data[i].birth = 0;
 		data[i].id = i + 1;
 		if (ac == 6)
 			data[i].lunch = ft_atoi(av[5]);
@@ -56,7 +55,7 @@ void	ft_create_thread(t_data *data)
 	count = data->philo_nbr;
 	while (i < count)
 	{
-		data[i].start = get_time();
+		data[i].birth = get_time();
 		pthread_create(&data[i].philo, NULL, &ft_routine, &data[i]);
 		i++;
 	}

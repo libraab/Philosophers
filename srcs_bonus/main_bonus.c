@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:25:36 by abouhlel          #+#    #+#             */
-/*   Updated: 2021/12/24 15:52:10 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 15:50:07 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	ft_init_values(t_data *data, int ac, char **av)
 		data[i].sleep_time = ft_atoi(av[4]);
 		data[i].death_time = ft_atoi(av[2]);
 		data[i].philo_nbr = ft_atoi(av[1]);
-		data[i].starving = 0;
-		data[i].start = 0;
-		data[i].alive = 1;
+		data[i].starving_mode = 0;
+		data[i].birth = 0;
 		data[i].id = i + 1;
 		data[i].forks = data->forks;
 		data[i].print = data->print;
