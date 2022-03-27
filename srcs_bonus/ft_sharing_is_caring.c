@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:27:54 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 17:50:43 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:00:15 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_sharing_is_caring(t_data data)
 		printf("[%ld] id %d took 2 forks\n", get_time() - data.birth, data.id);
 		sem_post(data.print);
 		sem_wait(data.print);
-		data.starving_mode = get_time() - data.birth;
+		data.starving = get_time() - data.birth;
 		printf("[%ld] id %d is eating\n", get_time() - data.birth, data.id);
 		sem_post(data.print);
 		ft_usleep(data.birth, data.eat_time);
@@ -57,7 +57,7 @@ void	*ft_funeral(void *ptr)
 	philo = ptr;
 	while (philo->lunch > 0)
 	{
-		if (get_time() - philo->birth >= philo->starving_mode + philo->death_time)
+		if (get_time() - philo->birth >= philo->starving + philo->death_time)
 		{
 			printf("[%ld] philo %d ->💀\n", get_time() - philo->birth, philo->id);
 			exit(EXIT_FAILURE);

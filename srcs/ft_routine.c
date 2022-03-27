@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:25:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 17:50:22 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:09:30 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_eat(t_data *phil)
 	pthread_mutex_lock(&phil->output);
 	printf("[%ld] id %d took left fork\n", get_time() - phil->birth, phil->id);
 	pthread_mutex_unlock(&phil->output);
-	phil->starving_mode = get_time() - phil->birth;
+	phil->starving = get_time() - phil->birth;
 	pthread_mutex_lock(&phil->output);
 	printf("[%ld] id %d is eating\n", get_time() - phil->birth, phil->id);
 	pthread_mutex_unlock(&phil->output);
@@ -66,7 +66,7 @@ void	*ft_funeral(void *ptr)
 	philo = ptr;
 	while (philo->lunch > 0)
 	{
-		if (get_time() - philo->birth > philo->starving_mode + philo->death_time)
+		if (get_time() - philo->birth >= philo->starving + philo->death_time)
 		{
 			pthread_mutex_lock(&philo->output);
 			printf("[%ld] id %d died\n", get_time() - philo->birth, philo->id);

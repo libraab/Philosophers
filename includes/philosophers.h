@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:52:51 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 15:50:18 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:00:00 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_data
 	long int		sleep_time;
 	long int		death_time;
 	long int		birth;
-	int				starving_mode;
+	int				starving;
 	int				philo_nbr;
 	int				lunch;
 	int				id;
@@ -57,26 +57,24 @@ void			ft_init_mutex(t_data *data);
 void			ft_create_thread(t_data *data);
 void			ft_destroy_mutex(t_data *data);
 long int		get_time(void);
+
 // UTILS
 void			*ft_memset(void	*b, int c, size_t len);
 void			*ft_calloc(size_t count, size_t size);
 int				ft_isdigit(int c);
 long long int	ft_atoi(char *str);
+
 // ERROR
 int				ft_check_limit(char **av, int ac);
 int				ft_check_neg(char **av, int ac);
 void			ft_usleep(long int birth, long int eat_time);
+
 // ROUTINE
 void			*ft_routine(void *ptr);
 void			ft_eat(t_data *philo);
 void			ft_sleep(t_data *philo);
 void			ft_think(t_data *philo);
 void			*ft_funeral(void *ptr);
-
-//*************************************************************//
-//						* F R E E *							   //	
-//*************************************************************//
-
 void			ft_free(t_data *data);
 
 //*************************************************************//

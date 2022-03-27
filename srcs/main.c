@@ -6,7 +6,7 @@
 /*   By: abouhlel <abouhlel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:53:00 by abouhlel          #+#    #+#             */
-/*   Updated: 2022/03/27 15:50:40 by abouhlel         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:04:32 by abouhlel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_init_values(t_data *data, int ac, char **av)
 		data[i].sleep_time = ft_atoi(av[4]);
 		data[i].death_time = ft_atoi(av[2]);
 		data[i].philo_nbr = ft_atoi(av[1]);
-		data[i].starving_mode = 0;
+		data[i].starving = 0;
 		data[i].birth = 0;
 		data[i].id = i + 1;
 		if (ac == 6)
@@ -70,10 +70,10 @@ void	ft_init_mutex(t_data *data)
 
 	i = 0;
 	count = data->philo_nbr;
+	pthread_mutex_init(&data->output, NULL);
 	while (i < count)
 	{
 		data[i].left_fork = NULL;
-		pthread_mutex_init(&data[i].output, NULL);
 		pthread_mutex_init(&data[i].right_fork, NULL);
 		if (i == count - 1)
 			data[i].left_fork = &data[0].right_fork;
